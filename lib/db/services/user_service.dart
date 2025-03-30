@@ -25,9 +25,8 @@ class UserService {
   }
 
   Future<int> insertMessages(ChatMessage message) {
-    return _db.into(_db.chatMessagesEntity).insert(
-      message.toInsertable()
-    );
+    print(message.toInsertable());
+    return _db.into(_db.chatMessagesEntity).insert(message.toInsertable());
   }
 
   Future<List<User>> fetchAllUsers() {
@@ -41,8 +40,6 @@ class UserService {
   Future<int> deleteUser(int id) {
     return (_db.delete(_db.users)..where((tbl) => tbl.id.equals(id))).go();
   }
-
-
 }
 
 extension ChatMessageExt on ChatMessage {
@@ -77,7 +74,8 @@ extension ChatMessageExt on ChatMessage {
       readAt: readAt != null ? Value(readAt!) : null,
       distributionKey: distributionKey != null ? Value(distributionKey!) : null,
       decrypted: decrypted != null ? Value(decrypted!) : null,
-      repliedMessageId: repliedMessageId != null ? Value(repliedMessageId!) : null,
+      repliedMessageId:
+          repliedMessageId != null ? Value(repliedMessageId!) : null,
       documentUrls: documentUrls != null ? Value(documentUrls!) : null,
       deletedForMe: deletedForMe != null ? Value(deletedForMe!) : null,
       reactions: reactions != null ? Value(reactions!) : null,

@@ -31,6 +31,7 @@ LazyDatabase _openConnection() {
         db.execute("PRAGMA journal_mode=WAL;"); // Enable WAL mode
         db.execute("PRAGMA busy_timeout = 5000;"); // 5s wait if locked
       },
+      logStatements: true
     );
 
     // Unlock the file after database operations

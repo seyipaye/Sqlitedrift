@@ -6,8 +6,7 @@ import 'package:driftexample/db/tables/items/media_holder.dart';
 import 'package:driftexample/db/tables/items/message_reactions.dart';
 import 'package:equatable/equatable.dart';
 
-
-
+// 'sent'
 enum MessageStatus {
   saved,
   sent,
@@ -114,7 +113,6 @@ enum MessageMediaOrientation {
   }
 }
 
-
 class ChatMessage extends Equatable {
   final String id;
   final String messageId;
@@ -145,7 +143,7 @@ class ChatMessage extends Equatable {
   final List<MessageReaction>? reactions;
   final MessageStatus status;
 
-  ChatMessage({
+  const ChatMessage({
     required this.id,
     this.keyBundle,
     this.documentUrls,
@@ -176,37 +174,37 @@ class ChatMessage extends Equatable {
     this.medias,
   });
 
-
   @override
   String get uniqueId => messageId;
 
-  ChatMessage copyWith({String? id,
-    bool? messageDeletingFlag,
-    bool? deletedForMe,
-    List<String>? documentUrls,
-    String? messageType,
-    bool? isForwarded,
-    String? messageId,
-    String? roomId,
-    String? newMessage,
-    ZenCall? zenCall,
-    List<String>? localFilePath,
-    String? repliedMessageId,
-    String? senderId,
-    DateTime? sentAt,
-    DateTime? deliveredAt,
-    DateTime? readAt,
-    bool? isDeleted,
-    bool? isDownloading,
-    List<String>? readBy,
-    String? distributionKey,
-    String? senderName,
-    MessageStatus? status,
-    DateTime? createdAt,
-    String? messageCreated,
-    List<MessageReaction>? reactions,
-    List<MessageMediaHolder>? medias,
-    bool? decrypted}) {
+  ChatMessage copyWith(
+      {String? id,
+      bool? messageDeletingFlag,
+      bool? deletedForMe,
+      List<String>? documentUrls,
+      String? messageType,
+      bool? isForwarded,
+      String? messageId,
+      String? roomId,
+      String? newMessage,
+      ZenCall? zenCall,
+      List<String>? localFilePath,
+      String? repliedMessageId,
+      String? senderId,
+      DateTime? sentAt,
+      DateTime? deliveredAt,
+      DateTime? readAt,
+      bool? isDeleted,
+      bool? isDownloading,
+      List<String>? readBy,
+      String? distributionKey,
+      String? senderName,
+      MessageStatus? status,
+      DateTime? createdAt,
+      String? messageCreated,
+      List<MessageReaction>? reactions,
+      List<MessageMediaHolder>? medias,
+      bool? decrypted}) {
     return ChatMessage(
       documentUrls: documentUrls ?? this.documentUrls,
       isForwarded: isForwarded ?? this.isForwarded,
@@ -240,8 +238,6 @@ class ChatMessage extends Equatable {
       reactions: reactions ?? this.reactions,
     );
   }
-
-
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -291,8 +287,8 @@ class ChatMessage extends Equatable {
         isForwarded: isForwarded ?? false,
         messageType: messageType ?? "message",
         repliedMessageId: repliedMessageId,
-        id:(newMessage??"")+DateTime.now().toIso8601String().toString(),
-        messageId: DateTime.now().toIso8601String() ??"",
+        id: (newMessage ?? "") + DateTime.now().toIso8601String().toString(),
+        messageId: DateTime.now().toIso8601String() ?? "",
         roomId: roomId,
         localFilePath: localFilePath,
         newMessage: newMessage,
@@ -308,19 +304,21 @@ class ChatMessage extends Equatable {
         messageCreated: DateTime.now().toUtc().toIso8601String());
   }
 
-  factory ChatMessage.fromMap(Map<String, dynamic> map,) {
+  factory ChatMessage.fromMap(
+    Map<String, dynamic> map,
+  ) {
     return ChatMessage(
         keyBundle: map["keyBundle"] as String?,
         isForwarded: map["isForwarded"] ?? false,
         messageType: (map["messageType"] as String?) ?? "message",
         repliedMessageId: map['repliedMessageId'] as String?,
-        id: map['id'] ,
+        id: map['id'],
         messageId: map['messageId'] as String,
         roomId: map['roomId'] as String,
         newMessage: map['newMessage'] as String?,
         documentUrls: (map['documentUrls'] as List<dynamic>?)
-            ?.map((e) => e as String)
-            .toList() ??
+                ?.map((e) => e as String)
+                .toList() ??
             [],
         localFilePath: null,
         senderId: map['senderId'] as String,
@@ -338,8 +336,8 @@ class ChatMessage extends Equatable {
             : DateTime.parse(map['messageCreated'] as String),
         isDeleted: map['isDeleted'] ?? false,
         readBy: (map['readBy'] as List<dynamic>?)
-            ?.map((e) => e as String)
-            .toList() ??
+                ?.map((e) => e as String)
+                .toList() ??
             [],
         distributionKey: map['distributionKey'] as String?,
         senderName: map['senderName'] as String? ?? "Unknown",
@@ -354,11 +352,11 @@ class ChatMessage extends Equatable {
     return ChatMessage(
         isForwarded: map["isForwarded"] ?? false,
         messageType: map["messageType"] as String,
-        id: map['id'] ,
+        id: map['id'],
         messageId: map['messageId'] as String,
         roomId: map['roomId'] as String,
         newMessage:
-        map['newMessage'] != null ? map['newMessage'] as String : null,
+            map['newMessage'] != null ? map['newMessage'] as String : null,
         localFilePath: null,
         senderId: map['senderId'] as String,
         sentAt: map['sentAt'] != null
@@ -373,7 +371,7 @@ class ChatMessage extends Equatable {
         createdAt: DateTime.parse(map['createdAt'] as String),
         isDeleted: map['isDeleted'] == null ? false : map['isDeleted'] as bool,
         readBy:
-        (map['readBy'] as List<dynamic>).map((e) => e as String).toList(),
+            (map['readBy'] as List<dynamic>).map((e) => e as String).toList(),
         medias: (map['media'] as List<dynamic>?)
             ?.map((e) => MessageMediaHolder.fromMap(e))
             .toList(),
@@ -401,20 +399,15 @@ class ChatMessage extends Equatable {
 
   bool isMedia() {
     return localFilePath != null && messageType == "image" ||
-        localFilePath != null &&
-            messageType == "video" ||
-        localFilePath != null &&
-            messageType == "videoNote";
+        localFilePath != null && messageType == "video" ||
+        localFilePath != null && messageType == "videoNote";
   }
 
   bool isImageOrVideo() {
     return localFilePath != null && messageType == "image" ||
-        localFilePath != null &&
-            messageType == "video" || localFilePath != null &&
-        messageType == "media";
+        localFilePath != null && messageType == "video" ||
+        localFilePath != null && messageType == "media";
   }
-
-
 
   String getThumbFile() {
     final media = medias?.firstOrNull;
@@ -428,7 +421,6 @@ class ChatMessage extends Equatable {
   String getPath() {
     return localFilePath?.firstOrNull ?? "";
   }
-
 
   String getNetwork() {
     final url =
@@ -450,10 +442,8 @@ class ChatMessage extends Equatable {
     return messageType.toLowerCase() == "video";
   }
 
-
   @override
-  List<Object?> get props =>
-      [
+  List<Object?> get props => [
         id,
         messageId,
         roomId,
@@ -588,7 +578,6 @@ enum CallDirection {
   }
 }
 
-
 class ZenCall {
   String? callId;
   DateTime? callDuration;
@@ -597,12 +586,13 @@ class ZenCall {
   CallStatus callStatus;
   CallDirection callDirection;
 
-  ZenCall({this.callId,
-    this.callType = CallType.voice,
-    this.callStatus = CallStatus.connecting,
-    this.callDirection = CallDirection.incoming,
-    this.callDuration,
-    this.callEndTime});
+  ZenCall(
+      {this.callId,
+      this.callType = CallType.voice,
+      this.callStatus = CallStatus.connecting,
+      this.callDirection = CallDirection.incoming,
+      this.callDuration,
+      this.callEndTime});
 
   @override
   bool operator ==(Object other) {
@@ -629,8 +619,6 @@ class ZenCall {
     );
   }
 
-
-
   @override
   String toString() {
     return "callId $callId, callDuration $callDuration, callDirection $callDirection, callType $callType, callStatus $callStatus";
@@ -638,24 +626,33 @@ class ZenCall {
 
   Map<String, dynamic> toMap() {
     return {
-      'callId': this.callId,
-      'callDuration': this.callDuration,
-      'callEndTime': this.callEndTime,
-      'callType': this.callType,
-      'callStatus': this.callStatus,
-      'callDirection': this.callDirection,
+      'callId': callId,
+      'callDuration': callDuration?.toIso8601String(),
+      'callEndTime': callEndTime?.toIso8601String(),
+      'callType': callType.toString(),
+      'callStatus': callStatus.toString(),
+      'callDirection': callDirection.toString(),
     };
   }
 
   factory ZenCall.fromMap(Map<String, dynamic> map) {
     return ZenCall(
       callId: map['callId'] as String,
-      callDuration: map['callDuration'] as DateTime,
-      callEndTime: map['callEndTime'] as DateTime,
-      callType: map['callType'] as CallType,
-      callStatus: map['callStatus'] as CallStatus,
-      callDirection: map['callDirection'] as CallDirection,
+      callDuration: map['callDuration'] != null
+          ? DateTime.parse(map['callDuration'] as String)
+          : null,
+      callEndTime: map['callEndTime'] != null
+          ? DateTime.parse(map['callDuration'] as String)
+          : null,
+      callType: map['callType'] != null
+          ? CallType.fromString(map['callType'] as String)
+          : CallType.voice,
+      callStatus: map['callStatus'] != null
+          ? CallStatus.fromString(map['callStatus'] as String)
+          : CallStatus.connecting,
+      callDirection: map['callDirection'] != null
+          ? CallDirection.fromString(map['callDirection'] as String)
+          : CallDirection.incoming,
     );
   }
 }
-
