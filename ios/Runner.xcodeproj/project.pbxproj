@@ -15,7 +15,6 @@
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		CBB17FD9651637BF9F65B238 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1F41C22F7691C87C06C31A /* Pods_RunnerTests.framework */; };
-		F648B5562D98722200E004BC /* GRDB-dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F648B5552D98722200E004BC /* GRDB-dynamic */; };
 		F6C3A3292D97C3B300612733 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C3A3282D97C3B300612733 /* ChatModel.swift */; };
 		FEA44A15356B641F0893C8BF /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 902782BA2EA3D32A8F4DF270 /* Pods_Runner.framework */; };
 /* End PBXBuildFile section */
@@ -83,9 +82,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F648B5532D986C9900E004BC /* SQLite in Frameworks */,
+				F6B792332D99311300153BB0 /* GRDB in Frameworks */,
 				F648B5562D98722200E004BC /* GRDB-dynamic in Frameworks */,
 				FEA44A15356B641F0893C8BF /* Pods_Runner.framework in Frameworks */,
+				F61D83412D9931C300746B53 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +244,6 @@
 			);
 			mainGroup = 97C146E51CF9000F007C117D;
 			packageReferences = (
-				F648B5542D98722200E004BC /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 			);
 			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
 			projectDirPath = "";
@@ -737,12 +736,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F648B5512D986C9900E004BC /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+		F61D833F2D9931C300746B53 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.15.3;
+				branch = master;
+				kind = branch;
 			};
 		};
 		F648B5542D98722200E004BC /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
@@ -753,18 +752,31 @@
 				kind = branch;
 			};
 		};
+		F6B792312D99311300153BB0 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F648B5522D986C9900E004BC /* SQLite */ = {
+		F61D83402D9931C300746B53 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F648B5512D986C9900E004BC /* XCRemoteSwiftPackageReference "SQLite.swift" */;
-			productName = SQLite;
+			package = F61D833F2D9931C300746B53 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
 		};
 		F648B5552D98722200E004BC /* GRDB-dynamic */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F648B5542D98722200E004BC /* XCRemoteSwiftPackageReference "GRDB.swift" */;
 			productName = "GRDB-dynamic";
+		};
+		F6B792322D99311300153BB0 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6B792312D99311300153BB0 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

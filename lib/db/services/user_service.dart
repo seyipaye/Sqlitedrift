@@ -15,6 +15,18 @@ class UserService {
     return _db.listenMessages;
   }
 
+  Future<void> printRawSQLResults() async {
+    final result = await _db
+        .customSelect(
+          'SELECT * FROM chat_messages_entity',
+        )
+        .get();
+
+    for (final row in result) {
+      print(row.data.toString()); // Print entire row as a map
+    }
+  }
+
   Future<int> insertUser(String name, String email) {
     return _db.into(_db.users).insert(
           UsersCompanion(

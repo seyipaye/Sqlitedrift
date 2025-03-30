@@ -12,9 +12,11 @@ class MessageReactionTypeConverter
   List<MessageReaction> fromSql(String fromDb) {
     try {
       final List<dynamic> jsonDecoded = json.decode(fromDb);
-      return jsonDecoded.map((re) => MessageReaction.fromMap(re as Map<String, dynamic>)).toList();
+      return jsonDecoded
+          .map((re) => MessageReaction.fromMap(re as Map<String, dynamic>))
+          .toList();
     } catch (e) {
-      debugPrint("Error decoding MessageMediaHolder from JSON: $e");
+      debugPrint("2Error decoding MessageMediaHolder from JSON: $e");
       return []; // Return empty list in case of failure
     }
   }
@@ -26,10 +28,8 @@ class MessageReactionTypeConverter
   }
 }
 
-class ZenCallTypeConverter
-    extends NullAwareTypeConverter<ZenCall?, String> {
+class ZenCallTypeConverter extends NullAwareTypeConverter<ZenCall?, String> {
   const ZenCallTypeConverter();
-
 
   @override
   String toSql(ZenCall? value) {
@@ -38,11 +38,14 @@ class ZenCallTypeConverter
 
   @override
   ZenCall? requireFromSql(String fromDb) {
+    if (fromDb.isEmpty) {
+      return null;
+    }
     try {
-      final  jsonDecoded = json.decode(fromDb);
+      final jsonDecoded = json.decode(fromDb);
       return ZenCall.fromMap(jsonDecoded);
     } catch (e) {
-      debugPrint("Error decoding MessageMediaHolder from JSON: $e");
+      debugPrint("3Error decoding MessageMediaHolder from JSON: $e | $fromDb");
       return null; // Return empty list in case of failure
     }
   }

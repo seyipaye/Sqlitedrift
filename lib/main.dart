@@ -35,6 +35,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    userService.printRawSQLResults();
     return MaterialApp(
       title: 'Drift Singleton Example',
       home: Scaffold(
@@ -111,12 +112,12 @@ class _MyAppState extends State<MyApp> {
                                   messageType: "call",
                                 );
 
-                                // final message = ChatMessage.createLocal(
-                                //     roomId:
-                                //         "Simon${DateTime.now().toIso8601String()}",
-                                //     senderId: "Simon",
-                                //     newMessage: text);
-                                // controller.text = "";
+                                final message = ChatMessage.createLocal(
+                                    roomId:
+                                        "Simon${DateTime.now().toIso8601String()}",
+                                    senderId: "Simon",
+                                    newMessage: text);
+                                controller.text = "";
                                 // userService.insertMessages(callMessage);
                                 callNativeMethod(
                                     "dsdfdf", "seyipaye123@gmail.dfdfdf");
