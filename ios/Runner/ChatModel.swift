@@ -109,6 +109,49 @@ struct ZenCall: Codable {
     }
 }
 
+struct ChatMessage {
+    //  let id: Int32
+    //  let name: NSString
+    let id: String
+    let message_id: String
+    let room_id: String
+    //    let key_bundle: String?
+    //    let new_message: String?
+    let zen_call: LogZenCall?
+    let is_forwarded: Bool
+    //        var local_file_path: String?  //
+    //        var medias: String?  //
+    let sender_id: String
+    //    let sent_at: Date?
+    //    let delivered_at: Date?
+    //    let read_at: Date?
+    let created_at: Date
+    let is_deleted: Bool
+    var read_by: String?  //
+    //        var distribution_key: String?
+    var sender_name: String
+    var progress: Double
+    var is_downloading: Bool
+    var message_created: String
+    //        var decrypted: Bool?
+    //        var replied_message_id: String?
+    var message_type: String
+    //        var document_urls: String?  //
+    //        var deleted_for_me: Bool?
+    var reactions: [String]  //
+    var status: MessageStatus
+}
+
+enum MessageStatus: String, Codable {
+    case saved
+    case sent
+    case delivered
+    case read
+    case downloading
+    case decryptionFailure
+    case failed
+}
+
 // Extensions for Date to handle ISO8601 strings
 extension Date {
     var iso8601String: String {
